@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+ <node pkg="ntrip_ros" type="ntripclient.py" name="ntrip_ros" output="screen" respawn="true">
+ 	 <param name="rtcm_topic" value="/ublox_gps/rtcm"/>
+ 	 <param name="ntrip_server" value="RTS1.ngii.go.kr:2101"/>
+	 <!-- <param name="ntrip_server" value="gnssdata.or.kr:2021"/> -->
+ 	 <param name="ntrip_user" value="agbread02"/>
+	 <!-- <param name="ntrip_user" value="wogns_1218@naver.com"/> -->
+ 	 <param name="ntrip_pass" value="ngii"/>
+	 <!-- <param name="ntrip_pass" value="gnss"/> -->
+ 	 <param name="ntrip_stream" value="VRS-RTCM31"/>
+	 <!-- <param name="ntrip_stream" value="YONS-RTCM31"/> -->
+ 	 <param name="nmea_gga" value="$GNGGA,054624.25,3729.72656,N,12657.52368,E,2,12,0.75,109.6,M,18.4,M,,0000*47"/>
+
+  </node>
+</launch>
