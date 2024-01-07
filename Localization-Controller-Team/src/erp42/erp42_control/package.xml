@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>erp42_control</name>
+  <version>0.0.0</version>
+  <description>The erp42_control package</description>
+
+  <maintainer email="7cmdehdrb@naver.com">7cmdehdrb</maintainer>
+
+  <!-- Specify license information for the package -->
+  <license>TODO</license>
+
+  <!-- Define package dependencies for building -->
+  <buildtool_depend>ament_cmake_ros</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <exec_depend>message_generation</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <!-- (Optional) Define dependencies for exporting and installing -->
+  <export>
+    <!-- Other packages can specify additional dependencies here -->
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

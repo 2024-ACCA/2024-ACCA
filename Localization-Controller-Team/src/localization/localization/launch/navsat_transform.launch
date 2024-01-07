@@ -1,0 +1,31 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro $(find localization)/launch/config/robot.urdf.xacro --inorder" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true">
+      <!-- <param name="tf_prefix" value="$(env ROS_HOSTNAME)"/> -->
+  </node>
+
+  <!-- <node pkg="tf" type="static_transform_publisher" name="imu_link_to_base_link" args="0 0 0 0 0 0 base_link imu_link 0.1" /> -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="navsat_link_to_base_link" args="1.0 0 0 0 0 0 base_link navsat_link 0.1" /> -->
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+
+    <rosparam command="load" file="$(find localization)/params/param_ekf.yaml" />
+
+    <remap from="odometry/filtered" to="odometry/navsat"/>
+
+  </node>
+
+  <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" clear_params="true" output="screen">
+    <rosparam command="load" file="$(find localization)/params/param_navsat.yaml" />
+
+    <remap from="imu/data" to="imu/data"/>
+    <remap from="odometry/filtered" to="odometry/navsat"/>
+    <remap from="gps/fix" to="ublox_gps/fix"/>
+     
+  </node>
+
+  <node pkg="localization" type="erp_twist.py" name="erp_twist"/>
+
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find localization)/launch/config/rviz.rviz" />
+</launch>

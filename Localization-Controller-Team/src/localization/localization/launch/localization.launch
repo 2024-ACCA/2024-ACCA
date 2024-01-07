@@ -1,0 +1,33 @@
+<launch>
+    <!-- Parameter -->
+    <param name="gps_odom_hz" value=8>
+    <param name="fix_topic" value="ublox_gps/fix">
+    <param name="fix_velocity_topic" value="ublox_gps/fix_velocity">
+    <param name="gps_odom_topic" value="gps_odometry">
+
+    <param name="imu_odom_hz" value=100>
+    <param name="imu_topic" value="imu/data">
+    <param name="encoder_topic" value="erp42_feedback">
+    <param name="imu_odom_topic" value="imu_odometry">
+
+    <param name="ndt_odom_hz" value=8>
+    <param name="pose_topic" value="ndt_pose">
+    <param name="ndt_velocity_topic" value="estimated_vel_mps">
+    <param name="ndt_odom_topic" value="ndt_odometry">
+
+
+    <!-- GPS Odometry Node -->
+    <node pkg="localization" type="gps_odometry.py" name="gps_odometry">
+        
+
+    <!-- IMU Encoder Odometry Node -->
+    <node pkg="localization" type="imu_odometry.py" name="imu_odometry">
+        
+
+    <!-- NDT Odometry Node -->
+    <node pkg="localization" type="ndt_odometry.py" name="ndt_odometry">
+       
+    <!-- Kalman Filter Node -->
+    <node pkg="localization" type="kalman.py" name="kalman">
+    
+</launch>
